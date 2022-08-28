@@ -48,8 +48,7 @@ exports.getFilter = (req, res) => {
       .find({ _id: req.params.type })
       .toArray(function (err, result) {
         if (err) throw err;
-        console.log(result);
-        res.send(result);
+        res.send(result.filter);
         db.close();
       });
   });

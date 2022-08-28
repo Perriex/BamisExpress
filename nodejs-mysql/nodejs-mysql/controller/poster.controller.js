@@ -37,3 +37,42 @@ exports.getPosterByName = (req, res) => {
       });
   });
 };
+
+
+
+exports.addVideo = (req, res) => {
+  if (req.body.name.length === 0 || req.body.video.length === 0) {
+    res.send(400);
+    return;
+  }
+  MongoClient.connect(dbConfig.url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbConfig.database);
+    var newvalues = { name: req.body.name, hash: req.body.video, link : req.body.link };
+
+    dbo
+      .collection(dbConfig.imgcollection)
+      .insertOne(newvalues, function (err, func) {
+        if (err) throw err;
+        res.send(200);
+        db.close();
+      });
+  });
+};
+
+exports.getVideoByName = (req, res) => {
+  MongoClient.connect(dbConfig.url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbConfig.database);
+    if (req.query.name) var query = { name: req.query.name };
+    else var query = null;
+    dbo
+      .collection(dbConfig.imgcollection)
+      .find(query)
+      .toArray(function (err, result) {
+        if (err) throw err;
+        res.send(result.filter((item) => item.hash?.length > 0));
+        db.close();
+      });
+  });
+};

@@ -4,7 +4,7 @@ var cors = require("cors");
 var app = express();
 var port = process.env.PORT || 8081;
 var corsOptions = {
-  origin: "http://localhost:8080",
+  origin: ["http://localhost:8080", "http://localhost:3000"],
 };
 
 require("./database/mongo.setup")();

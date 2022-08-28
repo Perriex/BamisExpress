@@ -1,13 +1,9 @@
 module.exports = (app) => {
   const text = require("../controller/text.controller");
 
-  app.get("/get/text/:section?", text.getTextOfSection);
+  app.get("/text/:section", text.getTextsOfSection);
 
-  app.post("/add/text/:section", text.editTextOfSection);
+  app.post("/text/:section", text.addTextsOfSection);
 
-  app.get("/get/title/:section?", text.getTitleOfSection);
-
-  app.post("/add/title/:section", text.editTitleOfSection);
-
-
+  app.post("/edit/text/:section", text.editTextsOfSection);
 };
