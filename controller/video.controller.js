@@ -1,22 +1,18 @@
 var MongoClient = require("mongodb").MongoClient;
 const dbConfig = require("../config/mongo.config");
 
-exports.addPoster = (req, res) => {
-  if (req.body.name.length === 0 || req.body.img.length === 0) {
+exports.addVideo = (req, res) => {
+  if (!req.body.name || !req.body.video) {
     res.sendStatus(400);
     return;
   }
   MongoClient.connect(dbConfig.url, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbConfig.database);
-    var newvalues = {
-      name: req.body.name,
-      hash: req.body.img,
-      link: req.body.link,
-    };
+    var newvalues = { name: req.body.name, hash: req.body.video };
 
     dbo
-      .collection(dbConfig.imgcollection)
+      .collection(dbConfig.videocollection)
       .insertOne(newvalues, function (err, func) {
         if (err) throw err;
         res.sendStatus(200);
@@ -25,14 +21,14 @@ exports.addPoster = (req, res) => {
   });
 };
 
-exports.getPosterByName = (req, res) => {
+exports.getVideoByName = (req, res) => {
   MongoClient.connect(dbConfig.url, function (err, db) {
     if (err) throw err;
     var dbo = db.db(dbConfig.database);
     if (req.query.name) var query = { name: req.query.name };
     else var query = null;
     dbo
-      .collection(dbConfig.imgcollection)
+      .collection(dbConfig.videocollection)
       .find(query)
       .toArray(function (err, result) {
         if (err) throw err;

@@ -37,7 +37,10 @@ exports.addTextsOfSection = (req, res) => {
     dbo
       .collection(dbConfig.textcollection)
       .insertOne(newvalues, function (err, func) {
-        if (err) throw err;
+        if (err) {
+          res.sendStatus(409);
+          throw err;
+        }
         res.send(200);
         db.close();
       });

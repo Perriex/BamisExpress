@@ -19,6 +19,8 @@ app.get("/", (req, res) => {
 
 require("./routes/components.routes")(app);
 require("./routes/poster.routes")(app);
+require("./routes/video.routes")(app);
+require("./routes/filter.routes")(app);
 require("./routes/text.routes")(app);
 
 app.listen(port, () => {

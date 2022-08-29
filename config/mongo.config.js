@@ -3,5 +3,6 @@ module.exports = {
   collection: "components",
   imgcollection: "posters",
   textcollection: "text",
+  videocollection: "video",
   database: "bartarha",
 };

@@ -4,10 +4,4 @@ module.exports = (app) => {
   app.get("/orders", components.getOrders);
 
   app.post("/orders", components.changeOrder);
-
-  app.get("/filter/:type", components.getFilter);
-
-  app.post("/filter/:type", components.changeFilter);
-
-
 };
