@@ -4,4 +4,6 @@ module.exports = (app) => {
   app.post("/video", video.addVideo);
 
   app.get("/video", video.getVideoByName);
+
+  app.delete("/video", video.deleteVideoByQuery);
 };

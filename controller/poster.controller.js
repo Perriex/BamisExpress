@@ -41,3 +41,22 @@ exports.getPosterByName = (req, res) => {
       });
   });
 };
+
+exports.deletePosterByQuery = (req, res) => {
+  if (!req.query.name) {
+    res.sendStatus(400);
+    return;
+  }
+  MongoClient.connect(dbConfig.url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbConfig.database);
+    var myquery = { name: req.query.name };
+    dbo
+      .collection(dbConfig.imgcollection)
+      .deleteOne(myquery, function (err, func) {
+        if (err) throw err;
+        res.sendStatus(200);
+        db.close();
+      });
+  });
+};

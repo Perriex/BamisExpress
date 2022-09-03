@@ -4,7 +4,6 @@
     "description": "This is BamisExpress, A backend service for edit Bartarha.net webpage.",
     "version": "1.0.0",
     "title": "BamisExpress",
-    "termsOfService": "https://bartarha.net/",
     "contact": {
       "email": "parna80as@gmail.com"
     }
@@ -185,6 +184,27 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": ["Poster"],
+        "summary": "remove poster with given name",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/video": {
@@ -246,6 +266,27 @@
             "schema": {
               "$ref": "#/definitions/video"
             }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Video"],
+        "summary": "remove video with given name",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

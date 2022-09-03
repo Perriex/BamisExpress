@@ -4,4 +4,6 @@ module.exports = (app) => {
   app.post("/poster", poster.addPoster);
 
   app.get("/poster", poster.getPosterByName);
+
+  app.delete("/poster", poster.deletePosterByQuery);
 };
