@@ -13,7 +13,7 @@ exports.getTextsOfSection = (req, res) => {
       .toArray(function (err, result) {
         if (err) throw err;
         if (result.length === 0) res.send(404);
-        if (req.params.section) res.send(result[0]);
+        if (req.params.section) res.send({ title: result[0].title, text: result[0].text });
         else res.send(result);
 
         db.close();
